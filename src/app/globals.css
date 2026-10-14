@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-script: var(--font-caveat), cursive;
+  --color-cream: #f6f1e8;
+  --color-ink: #1c1916;
+  --color-muted: #6f675e;
+  --color-clay: #c4784a;
+  --color-sage: #d7e6d4;
+  --color-line: #eadfce;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  color-scheme: light;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: clip;
+  background: #f6f1e8;
+  color: #1c1916;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #e7c8a4;
+  color: #1c1916;
+}
+
+:focus-visible {
+  outline: 2px solid #1c1916;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 80;
+  transform: translateY(-160%);
+  border-radius: 999px;
+  background: #1c1916;
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.blob-mask {
+  border-radius: 58% 42% 46% 54% / 46% 58% 42% 54%;
+}
+
+.portrait-mask {
+  border-radius: 46% 54% 50% 50% / 42% 46% 54% 58%;
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid #e4d8c8;
+  background: #fffdf9;
+  padding: 0.8rem 0.95rem;
+  color: #1c1916;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field[aria-invalid="true"] {
+  border-color: #c4784a;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in > * {
+    animation: rise 0.7s ease both;
+  }
+
+  .hero-in > *:nth-child(2) {
+    animation-delay: 0.06s;
+  }
+
+  .hero-in > *:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+
+  .hero-in > *:nth-child(4) {
+    animation-delay: 0.18s;
+  }
+
+  .float {
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .art-zoom {
+    transition: transform 0.5s ease;
+  }
+
+  .group:hover .art-zoom,
+  .group:focus-within .art-zoom {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  .resume-sheet {
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+}
